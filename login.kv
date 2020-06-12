@@ -1,0 +1,240 @@
+<WindowManager>:
+    Singup_or_Singin:
+    Singup:
+    Singin:
+
+
+#SCREEN 1
+<Singup_or_Singin>:
+    name:'pg1'
+#BG IMAGE
+    Label:
+        canvas.before:
+            Rectangle:
+                pos:0,0
+                size: self.size
+                source:"jpeg/516666.jpg"
+#TITLE
+    MDLabel:
+        text:"LOGIN PAGE"
+        font_name:"Chausson"
+        font_size:50
+        color:0.9,0.9,0.9,1
+        pos_hint:{"center_x":0.87,"center_y":0.92}
+
+
+    BoxLayout:
+        orientation:"horizontal"
+#BUTTON
+        MDFillRoundFlatIconButton:
+            font_name:"Chausson"
+            text:"Singin"
+            font_size:30
+            md_bg_color:0,0,0,0.5
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+            size_hint: 0.1, 0.1
+            text_color:1,1,1,1
+            icon:"script-text-outline"
+            on_press:
+                root.manager.current="pg3"
+                root.manager.transition.direction='left'
+            on_release:
+                print("Singin Button Pressed")
+
+#BUTTON
+        MDFillRoundFlatIconButton:
+            text:"Singup"
+            font_name:"Chausson"
+            font_size:30
+            pos_hint: {"center_x":0.5, "center_y":0.3}
+            size_hint: 0.1, 0.1
+            md_bg_color:1,1,1,0.5
+            text_color:0,0,0,1
+            icon:"script-text"
+            on_press:
+                print("Singup Button Pressed")
+            on_release:
+                root.manager.current="pg2"
+                root.manager.transition.direction="left"
+#SCREEN 2
+<Singup>:
+    name:"pg2"
+#OBJECT PROPERTIES
+    s2_user_name_in:s2_user_name_in
+    s2_email_in:s2_email_in
+    s2_password_in:s2_password_in
+
+#BG IMAGE
+    Label:
+        canvas:
+            Rectangle:
+                source:"jpeg/838230.jpg"
+                size:self.size
+                pos:self.pos
+
+#MAIN TITLE
+    Label:
+        text:"SINGUP PAGE"
+        color:1,1,1,1
+        pos_hint:{"center_x":0.50,"center_y":0.92}
+        font_name:"FFF"
+        font_size:60
+
+#NAME WITH BUTTON
+    Label:
+        text:"USER NAME"
+        font_name:'Chausson'
+        font_size:45
+        color:1,1,0,1
+        pos_hint:{"center_x":0.20,"center_y":0.61}
+
+    MDTextFieldRound:
+        id:s2_user_name_in
+        hint_text:"click here"
+        pos_hint:{"center_x":0.57,"center_y":0.62}
+        size_hint:0.4,0.1
+        text_size:20
+        multiline:False
+        icon_left:"account-circle-outline"
+
+
+#NAME WITH BUTTON
+    Label:
+        text:"Email-ID"
+        font_size:45
+        color:1,1,0,1
+        pos_hint:{"center_x":0.20,"center_y":0.47}
+        font_name:'Chausson'
+
+    MDTextFieldRound:
+        id:s2_email_in
+        hint_text:"click here"
+        pos_hint:{"center_x":0.57,"center_y":0.46}
+        size_hint:0.4,0.1
+        text_size:20
+        multiline:False
+        icon_left:"email"
+
+
+#NAME WITH BUTTON
+    Label:
+        text:"Set Password"
+        font_size:45
+        color:1,1,0,1
+        pos_hint:{"center_x":0.20,"center_y":0.32}
+        font_name:'Chausson'
+
+    MDTextFieldRound:
+        id:s2_password_in
+        hint_text:"click here"
+        pos_hint:{"center_x":0.57,"center_y":0.31}
+        size_hint:0.4,0.1
+        text_size:20
+        multiline:False
+        icon_left:"textbox-password"
+
+#BUTTON
+    MDTextButton:
+        text:"SUBMIT"
+        color:0,1,0,1
+        pos_hint:{"center_x":0.885,"center_y":0.21}
+        font_size:30
+        font_name:"FFF"
+        on_press:
+            root.s2textclear()
+
+#BUTTON
+    MDTextButton:
+        text:"BACK"
+        color:1,0,0,1
+        pos_hint:{"center_x":0.73,"center_y":0.21}
+        font_size:30
+        font_name:"FFF"
+        on_release:
+            root.manager.current="pg1"
+            root.manager.transition.direction='right'
+
+#SCREEN3
+<Singin>:
+    name:"pg3"
+    s3_user_name_in:s3_user_name_in
+    s3_password_in:s3_password_in
+
+
+    Label:
+        canvas:
+            Rectangle:
+                source:"jpeg/975392.jpg"
+                size:self.size
+                pos:self.pos
+
+#MAIN TITLE
+    Label:
+        text:"SINGIN PAGE"
+        color:1,1,1,1
+        pos_hint:{"center_x":0.50,"center_y":0.92}
+        font_name:"FFF"
+        font_size:60
+
+#NAME WITH BUTTON
+    Label:
+        text:"USER NAME"
+        font_name:'Chausson'
+        font_size:45
+        color:0.7,0,1,1
+        pos_hint:{"center_x":0.20,"center_y":0.61}
+
+    MDTextFieldRound:
+        id:s3_user_name_in
+        hint_text:"click here"
+        pos_hint:{"center_x":0.57,"center_y":0.62}
+        size_hint:0.4,0.1
+        text_size:20
+        multiline:False
+        icon_left:"account-circle-outline"
+
+#NAME WITH BUTTON
+
+    Label:
+        text:"PASSWORD"
+        font_size:45
+        color:0.7,0,1,1
+        pos_hint:{"center_x":0.20,"center_y":0.47}
+        font_name:'Chausson'
+
+    MDTextFieldRound:
+        id:s3_password_in
+        hint_text:"click here"
+        pos_hint:{"center_x":0.57,"center_y":0.46}
+        size_hint:0.4,0.1
+        text_size:20
+        multiline:False
+        icon_left:"textbox-password"
+
+    MDIconButton:
+        icon:'eye-off'
+        user_font_size:"20sp"
+        text_color:0,1,1,1
+        pos_hint:{"center_x":0.78,"center_y":0.46}
+
+#BUTTON
+    MDTextButton:
+        text:"SUBMIT"
+        color:0,1,0,1
+        pos_hint:{"center_x":0.885,"center_y":0.21}
+        font_size:30
+        font_name:"FFF"
+        on_press:
+            root.s3textclear()
+
+
+#BUTTON
+    MDTextButton:
+        text:"BACK"
+        color:1,0,0,1
+        pos_hint:{"center_x":0.73,"center_y":0.21}
+        font_size:30
+        font_name:"FFF"
+        on_release:
+            root.manager.current="pg1"
+            root.manager.transition.direction='right'
