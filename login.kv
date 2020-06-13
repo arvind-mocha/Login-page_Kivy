@@ -152,6 +152,8 @@
         pos_hint:{"center_x":0.73,"center_y":0.21}
         font_size:30
         font_name:"FFF"
+        on_press:
+            root.s2textclear()
         on_release:
             root.manager.current="pg1"
             root.manager.transition.direction='right'
@@ -237,6 +239,8 @@
         pos_hint:{"center_x":0.73,"center_y":0.21}
         font_size:30
         font_name:"FFF"
+        on_press:
+            root.s3textclear()
         on_release:
             root.manager.current="pg1"
             root.manager.transition.direction='right'

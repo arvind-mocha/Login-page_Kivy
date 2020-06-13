@@ -6,9 +6,7 @@ from kivymd.uix.button import MDRectangleFlatButton
 from kivy.core.text import LabelBase
 import pyodbc
 import datetime
-import re
-
-
+import String_validation
 
 #FONTS
 LabelBase.register(name='Black', fn_regular='E:/PROJECTS/GUI/kivymd/fonts/Roboto-Black.ttf')
@@ -28,6 +26,7 @@ now = datetime.datetime.now()
 date=now.strftime("%Y-%m-%d")
 time=now.strftime("%H:%M:%S")
 
+#INVALID STRINGS[email]
 
 
 #LOADING FILE
