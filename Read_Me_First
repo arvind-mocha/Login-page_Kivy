@@ -7,3 +7,5 @@ pip install kivy
 pip install pyodbc
 
 pip install datetime
+
+pip install re
