@@ -2,11 +2,19 @@ from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen,ScreenManager
 from kivy.properties import ObjectProperty
-from kivymd.uix.button import MDRectangleFlatButton
 from kivy.core.text import LabelBase
 import pyodbc
-import datetime
-import String_validation
+
+#USER DEFINED
+from String_validation import checkemail
+from String_validation import checkpassword
+from String_validation import checkname
+from Date_And_Time import date
+from Date_And_Time import time
+
+#DATE AND TIME
+t = time()
+d = date()
 
 #FONTS
 LabelBase.register(name='Black', fn_regular='E:/PROJECTS/GUI/kivymd/fonts/Roboto-Black.ttf')
@@ -20,13 +28,6 @@ LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\GUI\FONTS\FFF\FFF_Tusj.tt
 #DATABASE CONNECTION
 conn = pyodbc.connect(DSN='kivy_storage',autocommit=True)
 cursor = conn.cursor()
-
-#DATE AND TIME
-now = datetime.datetime.now()
-date=now.strftime("%Y-%m-%d")
-time=now.strftime("%H:%M:%S")
-
-#INVALID STRINGS[email]
 
 
 #LOADING FILE
@@ -42,21 +43,55 @@ class Singup(Screen):
     s2_email_in = ObjectProperty()
     s2_password_in = ObjectProperty()
     def s2DbStorage(self):
-        cursor.execute(
-            "insert into singup(username,email,password,date_of_creation,time_of_creation) values(?,?,?,?,?)",
-            f'{self.s2_user_name_in.text}', f'{self.s2_email_in.text}', f'{self.s2_password_in.text}',
-            f'{date}', f'{time}')
+        if checkname(self.s2_user_name_in.text) == 'valid':
+            if checkemail(self.s2_email_in.text) == 'valid':
+                if checkpassword(self.s2_password_in.text) == 'valid':
+                    cursor.execute( "insert into singup(username,email,password,date_of_creation,time_of_creation) values(?,?,?,?,?)",
+                                f'{self.s2_user_name_in.text}', f'{self.s2_email_in.text}', f'{self.s2_password_in.text}',
+                                f'{d}', f'{t}')
+                    print('valid')
+                    self.s2_user_name_in.text = ""
+                    self.s2_email_in.text = ""
+                    self.s2_password_in.text = ""
+                else:
+                    print('invalid password')
+                    self.s2_password_in.text = ""
+            else:
+                self.s2_email_in.text = ""
+                print('invalid email ')
+        else:
+            self.s2_user_name_in.text = ""
+            print('invalid name')
+
     def s2textclear(self):
-        self.s2_user_name_in.text=""
-        self.s2_email_in.text=""
-        self.s2_password_in.text=""
+        self.s2_user_name_in.text = ""
+        self.s2_email_in.text = ""
+        self.s2_password_in.text = ""
 
 class Singin(Screen):
     s3_user_name_in = ObjectProperty()
     s3_password_in = ObjectProperty()
+
+    def s3DbStorage(self):
+        if checkname(self.s3_user_name_in.text) == 'valid':
+            if checkpassword(self.s3_password_in.text) == 'valid':
+
+                cursor.execute("insert into singin(logged_in_as,time_of_login,date_of_login) values(?,?,?)",
+                                 f'{self.s3_user_name_in.text}', f'{t}',f'{d}')
+
+                print('valid')
+                self.s3_user_name_in.text = ""
+                self.s3_password_in.text = ""
+            else:
+                print('invalid password')
+                self.s3_password_in.text = ""
+        else:
+            print('invalid name')
+            self.s3_user_name_in.text = ""
+
     def s3textclear(self):
-        self.s3_user_name_in.text=""
-        self.s3_password_in.text=""
+        self.s3_user_name_in.text = ""
+        self.s3_password_in.text = ""
 
 class WindowManager(ScreenManager):
     pass
