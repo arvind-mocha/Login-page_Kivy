@@ -2,7 +2,7 @@ import re
 
 regex_mail = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 regex_name = '^/S[A-Za-z/d]+/S'
-regex_password = ''
+regex_password = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
 def checkemail(email):
     if(re.search(regex_mail,email)):
        return 'valid'
@@ -15,4 +15,10 @@ def checkname(name):
     else:
         return 'invalid'
 
+def checkpassword(password):
+    if (re.search(regex_password, password)):
+        return 'valid'
+
+    else:
+        return 'invalid'
 
