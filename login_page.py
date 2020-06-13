@@ -9,6 +9,7 @@ import datetime
 import re
 
 
+
 #FONTS
 LabelBase.register(name='Black', fn_regular='E:/PROJECTS/GUI/kivymd/fonts/Roboto-Black.ttf')
 LabelBase.register(name='Chausson', fn_regular='E:\PROJECTS\GUI\FONTS\chausson\ChaussonCFBold-Bold.otf')
