@@ -28,7 +28,10 @@ LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\GUI\FONTS\FFF\FFF_Tusj.tt
 #DATABASE CONNECTION
 conn = pyodbc.connect(DSN='kivy_storage',autocommit=True)
 cursor = conn.cursor()
-
+singup_checker1 = cursor.execute('select username from singup')
+singup_checker2 = cursor.execute('select email from singup')
+singup_name_validaton = [c[0] for c in cursor]
+singup_email_validation = [e[0] for e in singup_checker2]
 
 #LOADING FILE
 Builder.load_file('login.kv')
@@ -42,26 +45,35 @@ class Singup(Screen):
     s2_user_name_in = ObjectProperty()
     s2_email_in = ObjectProperty()
     s2_password_in = ObjectProperty()
+    name_checker = cursor.execute('select username from singup')
     def s2DbStorage(self):
-        if checkname(self.s2_user_name_in.text) == 'valid':
-            if checkemail(self.s2_email_in.text) == 'valid':
-                if checkpassword(self.s2_password_in.text) == 'valid':
-                    cursor.execute( "insert into singup(username,email,password,date_of_creation,time_of_creation) values(?,?,?,?,?)",
-                                f'{self.s2_user_name_in.text}', f'{self.s2_email_in.text}', f'{self.s2_password_in.text}',
-                                f'{d}', f'{t}')
-                    print('valid')
-                    self.s2_user_name_in.text = ""
-                    self.s2_email_in.text = ""
-                    self.s2_password_in.text = ""
+        if singup_name_validaton != [self.s2_user_name_in.text]:
+            if singup_email_validation != [self.s2_email_in.text]:
+                if checkname(self.s2_user_name_in.text) == 'valid':
+                    if checkemail(self.s2_email_in.text) == 'valid':
+                        if checkpassword(self.s2_password_in.text) == 'valid':
+                            cursor.execute( "insert into singup(username,email,password,date_of_creation,time_of_creation) "
+                                            "values(?,?,?,?,?)",f'{self.s2_user_name_in.text}', f'{self.s2_email_in.text}',
+                                             f'{self.s2_password_in.text}',f'{d}', f'{t}')
+                            print('valid')
+                            self.s2_user_name_in.text = ""
+                            self.s2_email_in.text = ""
+                            self.s2_password_in.text = ""
+                        else:
+                            print('invalid password')
+                            self.s2_password_in.text = ""
+                    else:
+                        self.s2_email_in.text = ""
+                        print('invalid email ')
                 else:
-                    print('invalid password')
-                    self.s2_password_in.text = ""
+                    self.s2_user_name_in.text = ""
+                    print('invalid name')
             else:
                 self.s2_email_in.text = ""
-                print('invalid email ')
+                print('email already exist')
         else:
             self.s2_user_name_in.text = ""
-            print('invalid name')
+            print('user name exist')
 
     def s2textclear(self):
         self.s2_user_name_in.text = ""
