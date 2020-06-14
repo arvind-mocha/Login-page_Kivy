@@ -1,14 +1,19 @@
-# GUI
-HI FRIENDS 
-FEEL FREE TO USE MY CODE IF NEED 
+#Graphical User Intrface
 
+work done:
+    
+    1.login page created 
+    2.connectd with database for storage purpose
 
-I HAVE ATTACHED EACH AND EVERY SINGLE PART YOU NEED TO RUN MY CODE
+#BEGINER FRIENDLY
 
-PREQUSITES 
+    I HAVE ATTACHED EACH AND EVERY SINGLE PART YOU NEED TO RUN MY CODE
+
+#PREQUSITES 
   
-  Install the required packages to avoid error
-  Run these lines on your Anacondaprompt or command prompt one by one(Mandatory)
+Install the required packages to avoid error
+
+Run these lines on your Anaconda prompt or command prompt one by one:
 
     pip install kivymd
 
@@ -19,3 +24,9 @@ PREQUSITES
     pip install datetime
 
     pip install re
+    
+    pip install random
+    
+FEEL FREE TO USE MY CODE IF NEED 
+
+ 
