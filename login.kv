@@ -142,7 +142,7 @@
         font_size:30
         font_name:"FFF"
         on_press:
-            root.s2DbStorage()
+            root.s2DbStorage() if root.name_checker() == 'valid' and root.email_checker() == 'valid' else print('name:',root.name_checker(),'mail:',root.email_checker())
 
 #BUTTON
     MDTextButton:

@@ -11,5 +11,7 @@ truncate table singup
 --Execute to remove singup table --
 drop table singup
 
+delete from [dbo].[singup] where userid=4
+
 
 

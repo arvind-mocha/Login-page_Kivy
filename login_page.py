@@ -11,6 +11,7 @@ from String_validation import checkpassword
 from String_validation import checkname
 from Date_And_Time import date
 from Date_And_Time import time
+from random_value_generator import random_numbers
 
 #DATE AND TIME
 t = time()
@@ -28,10 +29,8 @@ LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\GUI\FONTS\FFF\FFF_Tusj.tt
 #DATABASE CONNECTION
 conn = pyodbc.connect(DSN='kivy_storage',autocommit=True)
 cursor = conn.cursor()
-singup_checker1 = cursor.execute('select username from singup')
-singup_checker2 = cursor.execute('select email from singup')
-singup_name_validaton = [c[0] for c in cursor]
-singup_email_validation = [e[0] for e in singup_checker2]
+singup_name_validation = [c[0] for c in cursor.execute('select username from singup')]
+singup_email_validation = [e[0] for e in cursor.execute('select email from singup')]
 
 #LOADING FILE
 Builder.load_file('login.kv')
@@ -45,35 +44,53 @@ class Singup(Screen):
     s2_user_name_in = ObjectProperty()
     s2_email_in = ObjectProperty()
     s2_password_in = ObjectProperty()
-    name_checker = cursor.execute('select username from singup')
+
+    def name_checker(self):
+        for i in range(len(singup_email_validation)):
+            if singup_name_validation[i] == self.s2_user_name_in.text:
+                print('user name exist')
+                validation = 'invalid '
+                self.s2_user_name_in.text = ""
+                break
+            else:
+                validation = 'valid'
+
+        return validation
+
+    def email_checker(self):
+        for j in range(len(singup_email_validation)):
+            if singup_email_validation[j] == self.s2_email_in.text:
+                print('email already exist')
+                validation = 'invalid '
+                self.s2_email_in.text = ""
+                break
+            else:
+                validation = 'valid'
+
+        return validation
+
+
+
     def s2DbStorage(self):
-        if singup_name_validaton != [self.s2_user_name_in.text]:
-            if singup_email_validation != [self.s2_email_in.text]:
-                if checkname(self.s2_user_name_in.text) == 'valid':
-                    if checkemail(self.s2_email_in.text) == 'valid':
-                        if checkpassword(self.s2_password_in.text) == 'valid':
-                            cursor.execute( "insert into singup(username,email,password,date_of_creation,time_of_creation) "
-                                            "values(?,?,?,?,?)",f'{self.s2_user_name_in.text}', f'{self.s2_email_in.text}',
-                                             f'{self.s2_password_in.text}',f'{d}', f'{t}')
-                            print('valid')
-                            self.s2_user_name_in.text = ""
-                            self.s2_email_in.text = ""
-                            self.s2_password_in.text = ""
-                        else:
-                            print('invalid password')
-                            self.s2_password_in.text = ""
-                    else:
-                        self.s2_email_in.text = ""
-                        print('invalid email ')
-                else:
+        if checkname(self.s2_user_name_in.text) == 'valid':
+            if checkemail(self.s2_email_in.text) == 'valid':
+                if checkpassword(self.s2_password_in.text) == 'valid':
+                    cursor.execute( "insert into singup(userid,username,email,password,date_of_creation,time_of_creation) "
+                                    "values(?,?,?,?,?,?)",f'{random_numbers(99,200)}',f'{self.s2_user_name_in.text}',
+                                    f'{self.s2_email_in.text}',f'{self.s2_password_in.text}',f'{d}', f'{t}')
+                    print('valid and info stored')
                     self.s2_user_name_in.text = ""
-                    print('invalid name')
+                    self.s2_email_in.text = ""
+                    self.s2_password_in.text = ""
+                else:
+                    print('invalid password')
+                    self.s2_password_in.text = ""
             else:
                 self.s2_email_in.text = ""
-                print('email already exist')
+                print('invalid email ')
         else:
             self.s2_user_name_in.text = ""
-            print('user name exist')
+            print('invalid name')
 
     def s2textclear(self):
         self.s2_user_name_in.text = ""
