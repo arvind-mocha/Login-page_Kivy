@@ -1,15 +1,15 @@
-# **~~`****`~~**Graphical User Intrface
+# **Graphical User Intrface**
 
-work done:
+## **_work done:_**
     
     1.login page created 
     2.connectd with database for storage purpose
 
-#BEGINER FRIENDLY
+####  BEGINER FRIENDLY
 
     I HAVE ATTACHED EACH AND EVERY SINGLE PART YOU NEED TO RUN MY CODE
 
-#PREQUSITES 
+## _PREQUSITES_:
   
 Install the required packages to avoid error
 
