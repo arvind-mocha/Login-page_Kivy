@@ -32,7 +32,5 @@ def fun():
             break
         else :
             s = 'valid'
-
     return s
 
-print(fun())

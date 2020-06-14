@@ -18,12 +18,12 @@ t = time()
 d = date()
 
 #FONTS
-LabelBase.register(name='Black', fn_regular='E:/PROJECTS/GUI/kivymd/fonts/Roboto-Black.ttf')
-LabelBase.register(name='Chausson', fn_regular='E:\PROJECTS\GUI\FONTS\chausson\ChaussonCFBold-Bold.otf')
-LabelBase.register(name='Pacifico', fn_regular='E:\PROJECTS\GUI\FONTS\pacifico\Pacifico.ttf')
-LabelBase.register(name='RMItalic', fn_regular='E:/PROJECTS/GUI/FONTS/raleway/Raleway-MediumItalic.ttf')
-LabelBase.register(name='AR', fn_regular='E:/PROJECTS/GUI/FONTS/amatic/AmaticSC-Regular.ttf')
-LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\GUI\FONTS\FFF\FFF_Tusj.ttf")
+LabelBase.register(name='Black', fn_regular='E:/PROJECTS/GUI_kivy/kivymd/fonts/Roboto-Black.ttf')
+LabelBase.register(name='Chausson', fn_regular='E:\PROJECTS\GUI_kivy\FONTS\chausson\ChaussonCFBold-Bold.otf')
+LabelBase.register(name='Pacifico', fn_regular='E:\PROJECTS\GUI_kivy\FONTS\pacifico\Pacifico.ttf')
+LabelBase.register(name='RMItalic', fn_regular='E:/PROJECTS/GUI_kivy/FONTS/raleway/Raleway-MediumItalic.ttf')
+LabelBase.register(name='AR', fn_regular='E:/PROJECTS/GUI_kivy/FONTS/amatic/AmaticSC-Regular.ttf')
+LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\GUI_kivy\FONTS\FFF\FFF_Tusj.ttf")
 
 
 #DATABASE CONNECTION
