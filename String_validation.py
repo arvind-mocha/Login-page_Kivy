@@ -23,14 +23,3 @@ def checkpassword(password):
     else:
         return 'invalid'
 
-a = [1,2,3,4]
-b = 4
-def fun():
-    for i in range(4):
-        if b == a[i]:
-            s = 'invalid'
-            break
-        else :
-            s = 'valid'
-    return s
-

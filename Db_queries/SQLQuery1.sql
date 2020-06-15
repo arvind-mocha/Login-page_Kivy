@@ -5,16 +5,13 @@ create table singup(userid int constraint pk_user primary key ,username varchar(
 --Execute to view singup table content--
 select * from singup
 
-insert into [dbo].[singup] 
-values('271','arvind','arvind@yahoo.com','Clash!!12','2019-12-11','12:11:11')
-
 --Execute to remove singup table contents--
 truncate table singup
 
 --Execute to remove singup table --
 drop table singup
 
-delete from [dbo].[singup] where userid = 169
+insert into [dbo].[singup] values(123,'arvind','arvind@gmail.com','Arvind@123','2019-10-12','08:10:20')
 
 
 
