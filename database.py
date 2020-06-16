@@ -1,5 +1,5 @@
 import pyodbc
-from binary_search import Binarysearch
+from search import Binarysearch
 
 conn = pyodbc.connect(DSN='kivy_storage',autocommit=True)
 cursor = conn.cursor()
@@ -18,7 +18,7 @@ def singin_validator(name,password):
     val = [v for v in cursor.execute('select username,password from singupdummy')]
     try:
         return userid_validation[user_validation.index(val[-1])]
-    except  ValueError:
+    except ValueError:
         return 'invalid'
 
     

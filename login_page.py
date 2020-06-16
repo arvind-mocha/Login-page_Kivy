@@ -6,14 +6,14 @@ from kivy.core.text import LabelBase
 import pyodbc
 
 #USER DEFINED
-from String_validation import checkemail
-from String_validation import checkpassword
-from String_validation import checkname
-from Date_And_Time import date
-from Date_And_Time import time
-from binary_search import Binarysearch
-from database import singin_validator
-import database
+from string_validation import checkemail
+from string_validation import checkpassword
+from string_validation import checkname
+from Date_and_Time import date
+from Date_and_Time import time
+from search import Binarysearch
+from Database import singin_validator
+import Database
 
 #DATE AND TIME
 t = time()
@@ -22,15 +22,15 @@ d = date()
 #DATABASE
 conn = pyodbc.connect(DSN='kivy_storage',autocommit=True)
 cursor = conn.cursor()
-data=database
+data=Database
 
 #FONTS
-LabelBase.register(name='Black', fn_regular='E:/PROJECTS/kivy_Vacation_Simulator/kivymd/fonts/Roboto-Black.ttf')
-LabelBase.register(name='Chausson', fn_regular='E:\PROJECTS\kivy_Vacation_Simulator\FONTS\chausson\ChaussonCFBold-Bold.otf')
-LabelBase.register(name='Pacifico', fn_regular='E:\PROJECTS\kivy_Vacation_Simulator\FONTS\pacifico\Pacifico.ttf')
-LabelBase.register(name='RMItalic', fn_regular='E:/PROJECTS/kivy_Vacation_Simulator/FONTS/raleway/Raleway-MediumItalic.ttf')
-LabelBase.register(name='AR', fn_regular='E:/PROJECTS/kivy_Vacation_Simulator/FONTS/amatic/AmaticSC-Regular.ttf')
-LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\kivy_Vacation_Simulator\FONTS\FFF\FFF_Tusj.ttf")
+LabelBase.register(name='Black', fn_regular='E:/PROJECTS/kIVY_vacation_partner/kivymd/fonts/Roboto-Black.ttf')
+LabelBase.register(name='Chausson', fn_regular='E:\PROJECTS\kIVY_vacation_partner\FONTS\chausson\ChaussonCFBold-Bold.otf')
+LabelBase.register(name='Pacifico', fn_regular='E:\PROJECTS\kIVY_vacation_partner\FONTS\pacifico\Pacifico.ttf')
+LabelBase.register(name='RMItalic', fn_regular='E:/PROJECTS/kIVY_vacation_partner/FONTS/raleway/Raleway-MediumItalic.ttf')
+LabelBase.register(name='AR', fn_regular='E:/PROJECTS/kIVY_vacation_partner/FONTS/amatic/AmaticSC-Regular.ttf')
+LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\kIVY_vacation_partner\FONTS\FFF\FFF_Tusj.ttf")
 
 #LOADING FILE
 Builder.load_file('login.kv')
@@ -44,10 +44,10 @@ class Singup_or_Singin(Screen):
 class Singup(Screen):
     s2_user_name_in = ObjectProperty()
     s2_email_in = ObjectProperty()
-    s2_password_in  =ObjectProperty()
+    s2_password_in = ObjectProperty()
 
     def s2name_checker(self):
-        if Binarysearch(data.name_validation,0,len(data.name_validation)-1,self.s2_user_name_in.text)!='valid' and self.s2_user_name_in.text != "":
+        if Binarysearch(data.name_validation,0,len(data.name_validation)-1,self.s2_user_name_in.text) !='valid' and self.s2_user_name_in.text != "":
             validation = 'valid'
         else:
             validation = 'invalid'

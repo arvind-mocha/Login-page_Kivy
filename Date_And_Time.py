@@ -1,7 +1,7 @@
 from datetime import datetime
 from datetime import timedelta
 import random
-from binary_search import Binarysearch
+from search import Binarysearch
 
 datetimeformat = '%Y-%m-%d %H:%M:%S.%f'
 timeformat = '%H:%M:%S.%f'

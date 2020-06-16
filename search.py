@@ -15,17 +15,6 @@ def binary(arr, leastval, arrsize, sval):
     else:
         return 'invalid'
 
-import pyodbc
-
-conn = pyodbc.connect(DSN='kivy_storage',autocommit=True)
-cursor = conn.cursor()
-name_validation = [n[0] for n in cursor.execute('select username from singup')]
-email_validation = [e[0] for e in cursor.execute('select email from singup')]
-password_validation = [p[0] for p in cursor.execute('select password from singup')]
-userid_validation = [u[0] for u in cursor.execute('select userid from singup')]
-user_validation = [u for u in cursor.execute('select username,password from singup')]
-
-
 def Binarysearch(array,lval,size,string):
     if binary(array,lval,size,string) != 'invalid':
         validation = 'valid'
