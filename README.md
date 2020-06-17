@@ -10,9 +10,17 @@
     I HAVE ATTACHED EACH AND EVERY SINGLE PART YOU NEED TO RUN MY CODE
 
 ## _PREQUSITES_:
-  
-Install the required packages to avoid error
 
+ 1.required Knowledge in pyodbc visit 
+ https://github.com/mkleehammer/pyodbc/wiki for more information
+ 
+ 2.connected to mssql server and DNS as kivy_storage which you will 
+ find in the database module of my code 
+ 
+ 3.for more info about ODBC refer 
+ https://docs.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc?view=sql-server-ver15
+  
+4.Install the required packages to avoid error
 Run these lines on your Anaconda prompt or command prompt one by one:
 
     pip install kivymd
