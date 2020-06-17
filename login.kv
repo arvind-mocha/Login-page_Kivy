@@ -264,13 +264,24 @@
             Rectangle:
                 pos:0,0
                 size: self.size
-                source:"jpeg/congrates.jpeg"
+                source:"jpeg/travel4.jpg"
 
-    MDRaisedButton:
-        text:"SINGIN"
+    Label:
+        text:"Press This Icon"
+        font_size:20
+        color:0,1,0.5,1
+        pos_hint:{"center_x":0.485,"center_y":0.32}
+        font_name:'Pacifico'
+
+
+
+    MDFloatingActionButton:
+        icon:'icons/vacation.ico'
+        user_font_size:"95sp"
+        elevation_normal: 12
+        md_bg_color:app.theme_cls.accent_light
         font_size:50
-        pos_hint:{"center_x":0.5,"center_y":0.3}
-        font_name:"FFF"
+        pos_hint:{"center_x":0.485,"center_y":0.13}
         color:0.6,0.3,0,1
         on_press:
             root.manager.current = 'pg3'
