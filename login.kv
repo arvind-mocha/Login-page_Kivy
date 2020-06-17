@@ -1,8 +1,10 @@
+#:import FadeTransition kivy.uix.screenmanager
+
 <WindowManager>:
     Singup_or_Singin:
     Singup:
     Singin:
-
+    Done:
 
 #SCREEN 1
 <Singup_or_Singin>:
@@ -145,7 +147,9 @@
         font_name:"FFF"
         on_press:
             root.s2DbStorage() if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else print('authentication failure')
-
+        on_release:
+            root.manager.current = 'done' if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else print('authentication failure')
+            root.manager.transition.direction='up'
 #BUTTON
     MDTextButton:
         text:"BACK"
@@ -228,7 +232,7 @@
 
 #BUTTON
     MDTextButton:
-        text:"SUBMIT"
+        text:"OK"
         color:0,1,0,1
         pos_hint:{"center_x":0.885,"center_y":0.21}
         font_size:30
@@ -249,3 +253,25 @@
         on_release:
             root.manager.current="pg1"
             root.manager.transition.direction='right'
+
+
+<Done>:
+
+#BG IMAGE
+    name : 'done'
+    Label:
+        canvas.before:
+            Rectangle:
+                pos:0,0
+                size: self.size
+                source:"jpeg/congrates.jpeg"
+
+    MDRaisedButton:
+        text:"SINGIN"
+        font_size:50
+        pos_hint:{"center_x":0.5,"center_y":0.3}
+        font_name:"FFF"
+        color:0.6,0.3,0,1
+        on_press:
+            root.manager.current = 'pg3'
+            root.manager.transition.direction = 'left'

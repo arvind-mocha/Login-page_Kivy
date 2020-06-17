@@ -1,9 +1,11 @@
+from kivy.animation import Animation
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
-from kivy.uix.screenmanager import Screen,ScreenManager
+from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.properties import ObjectProperty
 from kivy.core.text import LabelBase
 import pyodbc
+
 
 #USER DEFINED
 from string_validation import checkemail
@@ -74,9 +76,7 @@ class Singup(Screen):
                                     "values(?,?,?,?,?,?)",f'{data.uid}',f'{self.s2_user_name_in.text}',
                                     f'{self.s2_email_in.text}',f'{self.s2_password_in.text}',f'{d}', f'{t}')
                     print('valid and info stored')
-                    self.s2_user_name_in.text = ""
-                    self.s2_email_in.text = ""
-                    self.s2_password_in.text = ""
+
                 else:
                     print('invalid password')
                     self.s2_password_in.text = ""
@@ -124,9 +124,13 @@ class Singin(Screen):
         self.s3_user_name_in.text = ""
         self.s3_password_in.text = ""
 
-class WindowManager(ScreenManager):
+
+class Done(Screen):
     pass
 
+
+class WindowManager(ScreenManager):
+    pass
 
 #APP
 class Myapp(MDApp):
