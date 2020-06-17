@@ -10,6 +10,8 @@
     I HAVE ATTACHED EACH AND EVERY SINGLE PART YOU NEED TO RUN MY CODE
 
 ## _PREQUSITES_:
+
+must need sql server since pyodbc is connected to mssql server here
   
 Install the required packages to avoid error
 
@@ -29,4 +31,3 @@ Run these lines on your Anaconda prompt or command prompt one by one:
     
 FEEL FREE TO USE MY CODE IF NEED 
 
- 
