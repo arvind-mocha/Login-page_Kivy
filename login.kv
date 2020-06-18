@@ -299,9 +299,21 @@
                 pos:0,0
                 size: self.size
                 source:"jpeg/travel2.jpg"
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation:"vertical"
 
+                    MDToolbar:
+                        title:"menu"
+                        left_action_items:[['menu',lambda x:root.callback1()]]
+                        right_action_items:[['clock',lambda x:root.callback1()]]
 
-
+                    MDFloatingActionButtonSpeedDial:
+                        data : root.data
+                        hint_animation : True
+                        rotation_root_button:True
 
 
 
