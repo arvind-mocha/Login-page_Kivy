@@ -5,6 +5,7 @@
     Singup:
     Singin:
     Done:
+    home:
 
 #SCREEN 1
 <Singup_or_Singin>:
@@ -150,6 +151,7 @@
         on_release:
             root.manager.current = 'done' if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else print('authentication failure')
             root.manager.transition.direction='up'
+            root.s2textclear() if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else print('authentication failure')
 #BUTTON
     MDTextButton:
         text:"BACK"
@@ -237,6 +239,9 @@
         pos_hint:{"center_x":0.885,"center_y":0.21}
         font_size:30
         font_name:"FFF"
+        on_press:
+            root.manager.current='done' if root.s3user_checker() != 'invalid' else print('invalid username or password')
+            root.manager.transition.direction = 'up'
         on_release:
             root.s3DbStorage() if root.s3user_checker() != 'invalid' else print('invalid username or password')
 
@@ -284,5 +289,20 @@
         pos_hint:{"center_x":0.485,"center_y":0.13}
         color:0.6,0.3,0,1
         on_press:
-            root.manager.current = 'pg3'
-            root.manager.transition.direction = 'left'
+            root.manager.current = 'home'
+
+<home>:
+    name:'home'
+    Label:
+        canvas.before:
+            Rectangle:
+                pos:0,0
+                size: self.size
+                source:"jpeg/travel2.jpg"
+
+
+
+
+
+
+

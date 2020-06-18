@@ -4,6 +4,7 @@ from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.properties import ObjectProperty
 from kivy.core.text import LabelBase
+from kivymd.theming import ThemeManager
 import pyodbc
 
 
@@ -128,6 +129,19 @@ class Singin(Screen):
 class Done(Screen):
     pass
 
+class home(Screen):
+    def on_start(self):
+        icons_item = {
+            "folder": "My files",
+            "account-multiple": "Shared with me",
+            "star": "Starred",
+            "history": "Recent",
+            "checkbox-marked": "Shared with me",
+            "upload": "Upload",
+        }
+        for icon_name in icons_item.keys():
+            self.root.ids.content_drawer.ids.md_list.add_widget(ItemDrawer(icon=icon_name, text=icons_item[icon_name])
+            )
 
 class WindowManager(ScreenManager):
     pass
