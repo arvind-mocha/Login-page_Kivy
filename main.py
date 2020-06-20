@@ -35,7 +35,7 @@ LabelBase.register(name='AR', fn_regular='E:/PROJECTS/kIVY_vacation_partner/FONT
 LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\kIVY_vacation_partner\FONTS\FFF\FFF_Tusj.ttf")
 
 #LOADING FILE
-Builder.load_file('login.kv')
+kv = Builder.load_file('login.kv')
 
 
 
@@ -54,7 +54,7 @@ class Singup(Screen):
         else:
             validation = 'invalid'
             self.s2_user_name_in.text = ""
-        print('username:', validation)
+            print('username already exist')
         return validation
 
 
@@ -64,7 +64,7 @@ class Singup(Screen):
         else:
             validation = 'invalid'
             self.s2_email_in.text = ""
-        print("email:", validation)
+            print("email already exist")
         return validation
 
 
@@ -72,11 +72,14 @@ class Singup(Screen):
         if checkname(self.s2_user_name_in.text) == 'valid':
             if checkemail(self.s2_email_in.text) == 'valid':
                 if checkpassword(self.s2_password_in.text) == 'valid':
-                    cursor.execute("insert into singup(userid,username,email,password,date_of_creation,time_of_creation)"
-                                    "values(?,?,?,?,?,?)",f'{data.uid}',f'{self.s2_user_name_in.text}',
-                                    f'{self.s2_email_in.text}',f'{self.s2_password_in.text}',f'{d}', f'{t}')
+                    try:
+                        cursor.execute("insert into singup(userid,username,email,password,date_of_creation,time_of_creation)"
+                                        "values(?,?,?,?,?,?)",f'{data.uid}',f'{self.s2_user_name_in.text}',
+                                        f'{self.s2_email_in.text}',f'{self.s2_password_in.text}',f'{d}', f'{t}')
+                    except pyodbc.IntegrityError:
+                        pass
                     print('valid and info stored')
-
+                    return 'valid'
                 else:
                     print('invalid password')
                     self.s2_password_in.text = ""
@@ -105,20 +108,22 @@ class Singin(Screen):
 
 
     def s3DbStorage(self):
-        if checkname(self.s3_user_name_in.text) == 'valid':
-            if checkpassword(self.s3_password_in.text) == 'valid':
-                cursor.execute("insert into singin(userid,logged_in_as,time_of_login,date_of_login) values(?,?,?,?)",
-                                 f'{self.s3user_checker()}',f'{self.s3_user_name_in.text}', f'{t}',f'{d}')
+        try:
+            if checkname(self.s3_user_name_in.text) == 'valid':
+                if checkpassword(self.s3_password_in.text) == 'valid':
+                    cursor.execute("insert into singin(userid,logged_in_as,time_of_login,date_of_login) values(?,?,?,?)",
+                                     f'{self.s3user_checker()}',f'{self.s3_user_name_in.text}', f'{t}',f'{d}')
 
-                print('valid')
-                self.s3_user_name_in.text = ""
-                self.s3_password_in.text = ""
+                    print('authentication complete')
+                    return 'valid'
+                else:
+                    print('invalid password')
+                    self.s3_password_in.text = ""
             else:
-                print('invalid password')
-                self.s3_password_in.text = ""
-        else:
-            print('invalid name')
-            self.s3_user_name_in.text = ""
+                print('invalid name')
+                self.s3_user_name_in.text = ""
+        except :
+            pass
 
     def s3textclear(self):
         self.s3_user_name_in.text = ""
@@ -129,19 +134,49 @@ class Done(Screen):
     pass
 
 class home(Screen):
+    manager = ObjectProperty()
     data = {'icons/food.ico':'food',
             'icons/traveling.ico':'trveling',
             'icons/shopping.ico':'shopping',
             'icons/movie.ico':'movie'}
-    def callback1(self):
-            pass
 
-    def callback2(self):
-        pass
+    def callback(self, instance):
+        if instance.icon == 'icons/movie.ico':
+            self.manager.transition.direction = 'right'
+            self.manager.transition.duration =0.4
+            self.manager.current = 'movie'
+            print('movie')
+        elif instance.icon == 'icons/shopping.ico':
+            self.manager.transition.direction = 'right'
+            self.manager.transition.duration = 0.4
+            self.manager.current = 'shopping'
+            print('online shopping')
+        elif instance.icon == 'icons/traveling.ico':
+            self.manager.transition.direction = 'right'
+            self.manager.transition.duration = 0.4
+            self.manager.current = 'traveling'
+            print('traveling')
+        elif instance.icon == 'icons/food.ico':
+            self.manager.transition.direction = 'right'
+            self.manager.transition.duration = 0.4
+            self.manager.current = 'food'
+            print('food')
 
+class movie(Screen):
+    pass
+
+class shopping(Screen):
+    pass
+
+class food(Screen):
+    pass
+
+class traveling(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     pass
+
 
 #APP
 class Myapp(MDApp):

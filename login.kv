@@ -1,11 +1,18 @@
-#:import FadeTransition kivy.uix.screenmanager
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
 
 <WindowManager>:
+    id:manager
     Singup_or_Singin:
     Singup:
     Singin:
     Done:
     home:
+    movie:
+    shopping:
+    food:
+    traveling:
+
 
 #SCREEN 1
 <Singup_or_Singin>:
@@ -39,8 +46,9 @@
             text_color:1,1,1,1
             icon:"script-text-outline"
             on_press:
+                root.manager.transition=WipeTransition(duration=0.4)
+                root.manager.transition.direction='right'
                 root.manager.current="pg3"
-                root.manager.transition.direction='left'
                 print("Singin Button Pressed")
 
 #BUTTON
@@ -56,8 +64,10 @@
             on_press:
                 print("Singup Button Pressed")
             on_release:
+                root.manager.transition=WipeTransition(duration=0.4)
+                root.manager.transition.direction='left'
                 root.manager.current="pg2"
-                root.manager.transition.direction="left"
+
 #SCREEN 2
 <Singup>:
     name:"pg2"
@@ -147,11 +157,12 @@
         font_size:30
         font_name:"FFF"
         on_press:
-            root.s2DbStorage() if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else print('authentication failure')
+            root.s2DbStorage() if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else None
         on_release:
-            root.manager.current = 'done' if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else print('authentication failure')
             root.manager.transition.direction='up'
-            root.s2textclear() if root.s2name_checker() == 'valid' and root.s2email_checker() == 'valid' else print('authentication failure')
+            root.manager.transition=WipeTransition(duration=0.4)
+            root.manager.current = 'done' if root.s2DbStorage() == 'valid'  else None
+            root.s2textclear() if root.s2DbStorage() else None
 #BUTTON
     MDTextButton:
         text:"BACK"
@@ -162,8 +173,10 @@
         on_press:
             root.s2textclear()
         on_release:
-            root.manager.current="pg1"
+            root.manager.transition=WipeTransition(duration=0.4)
             root.manager.transition.direction='right'
+            root.manager.current="pg1"
+
 
 #SCREEN3
 <Singin>:
@@ -240,10 +253,12 @@
         font_size:30
         font_name:"FFF"
         on_press:
-            root.manager.current='done' if root.s3user_checker() != 'invalid' else print('invalid username or password')
-            root.manager.transition.direction = 'up'
-        on_release:
             root.s3DbStorage() if root.s3user_checker() != 'invalid' else print('invalid username or password')
+
+        on_release:
+            root.manager.transition=WipeTransition(duration=0.4)
+            root.manager.transition.direction = 'up'
+            root.manager.current='done' if root.s3DbStorage()=='valid' else None
 
 
 #BUTTON
@@ -256,8 +271,10 @@
         on_press:
             root.s3textclear()
         on_release:
-            root.manager.current="pg1"
+            root.manager.transition.duration=0.4
             root.manager.transition.direction='right'
+            root.manager.current="pg1"
+
 
 
 <Done>:
@@ -278,8 +295,6 @@
         pos_hint:{"center_x":0.485,"center_y":0.32}
         font_name:'Pacifico'
 
-
-
     MDFloatingActionButton:
         icon:'icons/vacation.ico'
         user_font_size:"95sp"
@@ -289,6 +304,8 @@
         pos_hint:{"center_x":0.485,"center_y":0.13}
         color:0.6,0.3,0,1
         on_press:
+            root.manager.transition=WipeTransition(duration=0.4)
+            root.manager.transition.direction='up'
             root.manager.current = 'home'
 
 <home>:
@@ -298,23 +315,66 @@
             Rectangle:
                 pos:0,0
                 size: self.size
-                source:"jpeg/travel2.jpg"
+                source:"jpeg/welcome.jpg"
     NavigationLayout:
         ScreenManager:
             Screen:
+                name :'tool'
+
+
                 BoxLayout:
                     orientation:"vertical"
 
                     MDToolbar:
                         title:"menu"
-                        left_action_items:[['menu',lambda x:root.callback1()]]
+                        elevation:10
+                        left_action_items:[['menu',lambda x:nav_drawer.set_state()]]
                         right_action_items:[['clock',lambda x:root.callback1()]]
 
                     MDFloatingActionButtonSpeedDial:
                         data : root.data
                         hint_animation : True
                         rotation_root_button:True
+                        callback:root.callback
+
+        MDNavigationDrawer:
+            id:nav_drawer
 
 
+<movie>:
+    name:'movie'
+    Label:
+        canvas.before:
+            Rectangle:
+                pos:0,0
+                size: self.size
+                source:"jpeg/film.jpg"
+
+<shopping>:
+    name:'shopping'
+    Label:
+        canvas.before:
+            Rectangle:
+                pos:0,0
+                size: self.size
+                source:"jpeg/shopping.jpg"
+<food>:
+    name:'food'
+    Label:
+        canvas.before:
+            Rectangle:
+                pos:0,0
+                size: self.size
+                source:"jpeg/food2.jpg"
+
+
+<travel>:
+    name:'travel'
+    Label:
+        canvas.before:
+            Rectangle:
+                pos:0,0
+                size: self.size
+                source:"jpeg/taveling.jpg"
 
 
