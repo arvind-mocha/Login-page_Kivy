@@ -1,9 +1,12 @@
 from kivy.animation import Animation
+from kivy.uix.videoplayer import VideoPlayer
+
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.properties import ObjectProperty
 from kivy.core.text import LabelBase
+from kivy.uix.video import Video
 import pyodbc
 
 
@@ -136,7 +139,7 @@ class Done(Screen):
 class home(Screen):
     manager = ObjectProperty()
     data = {'icons/food.ico':'food',
-            'icons/traveling.ico':'trveling',
+            'icons/traveling.ico':'traveling',
             'icons/shopping.ico':'shopping',
             'icons/movie.ico':'movie'}
 
@@ -154,7 +157,7 @@ class home(Screen):
         elif instance.icon == 'icons/traveling.ico':
             self.manager.transition.direction = 'right'
             self.manager.transition.duration = 0.4
-            self.manager.current = 'traveling'
+            self.manager.current = 'travel'
             print('traveling')
         elif instance.icon == 'icons/food.ico':
             self.manager.transition.direction = 'right'
@@ -171,7 +174,7 @@ class shopping(Screen):
 class food(Screen):
     pass
 
-class traveling(Screen):
+class travel(Screen):
     pass
 
 class WindowManager(ScreenManager):
