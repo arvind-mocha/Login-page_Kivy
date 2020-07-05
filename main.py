@@ -148,22 +148,22 @@ class home(Screen):
             self.manager.transition.direction = 'right'
             self.manager.transition.duration =0.4
             self.manager.current = 'movie'
-            print('movie')
+            print('movie button pressed')
         elif instance.icon == 'icons/shopping.ico':
             self.manager.transition.direction = 'right'
             self.manager.transition.duration = 0.4
             self.manager.current = 'shopping'
-            print('online shopping')
+            print('online shopping button pressed')
         elif instance.icon == 'icons/traveling.ico':
             self.manager.transition.direction = 'right'
             self.manager.transition.duration = 0.4
             self.manager.current = 'travel'
-            print('traveling')
+            print('traveling pressed')
         elif instance.icon == 'icons/food.ico':
             self.manager.transition.direction = 'right'
             self.manager.transition.duration = 0.4
             self.manager.current = 'food'
-            print('food')
+            print('food button pressed')
 
 class movie(Screen):
     pass
