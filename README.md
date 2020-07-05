@@ -1,4 +1,4 @@
-# A Simple Login Page That Store The Users Information Using Kivy
+# A Simple Login Page Using Kivy That Store The Users Information in database using pyodbc
 
 
 ## **images of Login Pages**
