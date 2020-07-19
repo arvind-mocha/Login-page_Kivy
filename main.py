@@ -30,12 +30,12 @@ cursor = conn.cursor()
 data=Database
 
 #FONTS
-LabelBase.register(name='Black', fn_regular='E:/PROJECTS/kIVY_vacation_partner/kivymd/fonts/Roboto-Black.ttf')
-LabelBase.register(name='Chausson', fn_regular='E:\PROJECTS\kIVY_vacation_partner\FONTS\chausson\ChaussonCFBold-Bold.otf')
-LabelBase.register(name='Pacifico', fn_regular='E:\PROJECTS\kIVY_vacation_partner\FONTS\pacifico\Pacifico.ttf')
-LabelBase.register(name='RMItalic', fn_regular='E:/PROJECTS/kIVY_vacation_partner/FONTS/raleway/Raleway-MediumItalic.ttf')
-LabelBase.register(name='AR', fn_regular='E:/PROJECTS/kIVY_vacation_partner/FONTS/amatic/AmaticSC-Regular.ttf')
-LabelBase.register(name='FFF', fn_regular="E:\PROJECTS\kIVY_vacation_partner\FONTS\FFF\FFF_Tusj.ttf")
+LabelBase.register(name='Black', fn_regular='kivymd/fonts/Roboto-Black.ttf')
+LabelBase.register(name='Chausson', fn_regular='FONTS\chausson\ChaussonCFBold-Bold.otf')
+LabelBase.register(name='Pacifico', fn_regular='FONTS\pacifico\Pacifico.ttf')
+LabelBase.register(name='RMItalic', fn_regular='FONTS/raleway/Raleway-MediumItalic.ttf')
+LabelBase.register(name='AR', fn_regular='FONTS/amatic/AmaticSC-Regular.ttf')
+LabelBase.register(name='FFF', fn_regular="FONTS\FFF\FFF_Tusj.ttf")
 
 #LOADING FILE
 kv = Builder.load_file('login.kv')
