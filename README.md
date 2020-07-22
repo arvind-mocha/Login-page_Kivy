@@ -1,5 +1,8 @@
 # *A simple login page that stores user information in a database*
 
+# requirements
+pip install -r requirements.txt
+
 ## login page images
 
 <img src='screen_shots/Annotation 2020-06-17 152236.png' width='350' height='300'>  <img src='screen_shots/Annotation 2020-07-05 165434.png' width='350' height='300'>
